@@ -5,9 +5,9 @@ from sklearn.metrics import classification_report
 import numpy as np
 import mlflow
 
-mlflow.set_tracking_uri(uri="http://127.0.0.1:8088")
-mlflow.set_experiment("dpe_forever")
-mlflow.autolog()
+# mlflow.set_tracking_uri(uri="http://127.0.0.1:8088")
+# mlflow.set_experiment("dpe_forever")
+# mlflow.autolog()
 
 """
 [Q]
@@ -18,7 +18,7 @@ https://mlflow.org/docs/latest/python_api/mlflow.sklearn.html#mlflow.sklearn.aut
 
 if __name__ == "__main__":
     # Load the CSV into a DataFrame called 'data'
-    data = pd.read_csv("./data/dpe_tertiaire_20240307.csv")
+    data = pd.read_csv("../data/dpe_tertiaire_20240307.csv")
     data = data.sample(frac=1, random_state=808).reset_index(drop=True)
 
     # Assuming the last column is the target variable

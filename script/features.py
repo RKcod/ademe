@@ -19,7 +19,7 @@ from sklearn.preprocessing import OrdinalEncoder
 import json
 
 if __name__ == "__main__":
-    file = "./data/dpe-v2-tertiaire-2.csv"
+    file = "../data/original/dpe-v2-tertiaire-2.csv"
     data = pd.read_csv(file)
 
     columns = data.columns.copy()
@@ -175,7 +175,7 @@ if __name__ == "__main__":
 
     # Save the mappings to a JSON file
 
-    with open("./data/categorical_mappings.json", "w", encoding="utf-8") as f:
+    with open("../data/categorical_mappings.json", "w", encoding="utf-8") as f:
         json.dump(mappings, f, ensure_ascii=False, indent=4)
 
     columns_dates = ["date_visite_diagnostiqueur"]
@@ -200,7 +200,7 @@ if __name__ == "__main__":
     ]
 
     for col in columns_float:
-        data[col].fillna(0.0, inplace=True)
+        data[col] = data[col].fillna(0.0)
 
     data["conso_finale_energie"] = 0.0
     data["conso_primaire_energie"] = 0.0
@@ -220,7 +220,7 @@ if __name__ == "__main__":
     ]
 
     for col in columns_int:
-        data[col].fillna(-1, inplace=True)
+        data[col] = data[col].fillna(-1)
         data[col] = data[col].astype(int)
 
     target_encoding = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5, "F": 6, "G": 7}
@@ -250,4 +250,4 @@ if __name__ == "__main__":
 
     # alt
 
-    data.to_csv("./data/dpe_tertiaire_20240307.csv", index=False)
+    data.to_csv("../data/dpe_tertiaire_20240307.csv", index=False)
